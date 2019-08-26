@@ -1,7 +1,4 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'blog_generator',
     meta: [
@@ -16,13 +13,7 @@ module.exports = {
   },
   plugins: ['~/plugins/vuetify.js'],
   css: ['~/assets/style/app.styl'],
-  /*
-  ** Customize the progress bar color
-  */
   loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
   build: {
     extractCSS: true,
     extend (config, ctx) {
@@ -36,5 +27,6 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  buildModules: ['@nuxt/typescript-build']
 }
