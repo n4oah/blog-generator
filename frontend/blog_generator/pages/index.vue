@@ -1,23 +1,57 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-app>
+    <v-navigation-drawer class="indigo lighten-1" v-model="drawer" app>
+      <div class="text-xs-center">
+        <v-btn depressed large flat class="white--text font-weight-bold">Menu List</v-btn>
+      </div>
+      <v-list>
+        <v-list-tile v-for="item in items" :key="item.title">
+          <v-list-tile-action>
+            <v-icon color="white">{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content class="white--text">
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar color="indigo white--text" fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer">
+        <v-icon color="white">more_vert</v-icon>
+      </v-toolbar-side-icon>
+      <v-toolbar-title>원 타치 블로그</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn>로그인</v-btn>
+      <v-btn>로그아웃</v-btn>
+      <v-btn icon>
+        <v-icon>search</v-icon>
+    </v-btn>
+    </v-toolbar>
+    
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          <v-flex text-xs-center></v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    drawer: false,
+    items: [
+      { title: 'Dashboard', icon: 'dashboard' },
+      { title: 'Account', icon: 'account_box' },
+      { title: 'Admin', icon: 'gavel' }
+    ]
+  }),
+  props: {
+    source: String
+  }
+}
+</script>

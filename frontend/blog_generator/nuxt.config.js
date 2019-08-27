@@ -11,17 +11,18 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
+  plugins: [
+    '~/plugins/vuetify.ts'
+  ],
   css: ['~/assets/style/app.styl'],
   loading: { color: '#3B8070' },
   build: {
     extractCSS: true,
     extend (config, ctx) {
-      // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
-          test: /\.(js|vue)$/,
+          test: /\.(js|vue|ts)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
