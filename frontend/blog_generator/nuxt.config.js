@@ -16,7 +16,7 @@ module.exports = {
   loading: { color: '#3B8070' },
   build: {
     extractCSS: true,
-    extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -26,6 +26,14 @@ module.exports = {
         })
       }
     }
+  },
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  axios: {    
+    baseURL: 'http://localhost',
+    proxyHeaders: false,
+    credentials: false
   },
   buildModules: ['@nuxt/typescript-build']
 }

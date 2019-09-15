@@ -1,0 +1,34 @@
+server:
+  port: 80
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: create
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      connectionTimeout: 3000
+    url: jdbc:postgresql://218.55.205.131:5432/blogdb
+    username: blog
+    password: blog123
+  devtools:
+    restart:
+      enabled: true
+google:
+  client:
+    client-id: 1022382027832-et8dt0tda0nn0ff0471lafk62agcign6.apps.googleusercontent.com
+    client-secret: BvnLyS57kqkNQ_j6UR5HJdmy
+    access-token-uri: https://www.googleapis.com/oauth2/v4/token
+    user-authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+    client-authentication-scheme: form
+    scope:
+      - email
+      - profile
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo

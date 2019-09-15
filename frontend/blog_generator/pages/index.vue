@@ -47,7 +47,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm12 md12>
-                <a @click="onLoginAuth(loginType.Google)">
+                <a @click="onLoginAuth(LoginType[LoginType.Google])">
                   <v-img height="77" :src="require('@/assets/image/login/google-login-button.png')" />
                 </a>
               </v-flex>
@@ -80,13 +80,16 @@ class MainPage extends Vue {
     { title: 'Account', icon: 'account_box' },
     { title: 'Admin', icon: 'gavel' }
   ]
+  LoginType = LoginType
 
   showDialogLogin(): void {
     this.isLoginDialog = !this.isLoginDialog
   }
 
   onLoginAuth(authType: string): void {
-    console.log(authType)
+    // console.log(authType)
+    // console.log(this.$axios.get('/login/google'))
+    window.location.href='http://localhost/login?ll=aa'
   }
 
   onLogout(): void {

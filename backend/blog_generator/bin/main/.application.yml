@@ -1,0 +1,8 @@
+
+spring:
+	datasource:
+		hikari:
+			maximum-pool-size: 5
+		url: jdbc:postgresql://218.55.205.195:5432/blogdb
+		username: blog
+		password: blog123
