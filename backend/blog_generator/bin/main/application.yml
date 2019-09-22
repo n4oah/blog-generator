@@ -14,12 +14,13 @@ spring:
     hikari:
       maximum-pool-size: 5
       connectionTimeout: 3000
-    url: jdbc:postgresql://218.55.205.131:5432/blogdb
+    url: jdbc:postgresql://218.237.212.92:5432/blogdb
     username: blog
     password: blog123
   devtools:
     restart:
       enabled: true
+      include: src/main/kotlin/**
 google:
   client:
     client-id: 1022382027832-et8dt0tda0nn0ff0471lafk62agcign6.apps.googleusercontent.com

@@ -89,7 +89,8 @@ class MainPage extends Vue {
   onLoginAuth(authType: string): void {
     // console.log(authType)
     // console.log(this.$axios.get('/login/google'))
-    window.location.href='http://localhost/login?ll=aa'
+    document.cookie = 'aaaa=bbbb';
+    window.location.href='http://localhost/login/google'
   }
 
   onLogout(): void {

@@ -13,7 +13,7 @@ import javax.servlet.Filter
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig(private val ssoFilter: Filter) : WebSecurityConfigurerAdapter() {
+public class SecurityConfig(@Autowired private val ssoFilter: Filter) : WebSecurityConfigurerAdapter() {
 	override fun configure(http: HttpSecurity) {
 		http.antMatcher("/**")
 			.authorizeRequests()

@@ -1,15 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+	val kotlinVersion = "1.3.41"
 	id("org.springframework.boot") version "2.1.7.RELEASE"
 	id("io.spring.dependency-management") version "1.0.7.RELEASE"
-	kotlin("jvm") version "1.3.41"
-	kotlin("plugin.spring") version "1.3.41"
+	kotlin("jvm") version kotlinVersion
+	kotlin("plugin.spring") version kotlinVersion
+	id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
 }
 
 group = "co.kr.n4oah.blog"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+/*
+apply {
+	plugin("kotlin-jpa")
+}
+*/
 
 val developmentOnly by configurations.creating
 configurations {
@@ -40,15 +48,12 @@ dependencies {
 	
 	compileOnly("org.projectlombok:lombok")
 	
-	compile("org.springframework.boot:spring-boot-devtools")
+	runtime(group="org.springframework.boot", name="spring-boot-devtools", version="2.1.7.RELEASE")
+//	compile("org.springframework.boot:spring-boot-devtools")
 	
 	annotationProcessor("org.projectlombok:lombok")
 	
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
-tasks.getByName<BootRun>("bootRun") {
-	sourceResources(sourceSets["main"])
 }
 
 tasks.withType<KotlinCompile> {

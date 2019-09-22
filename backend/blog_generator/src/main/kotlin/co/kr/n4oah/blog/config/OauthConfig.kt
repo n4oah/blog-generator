@@ -17,36 +17,37 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.oauth2.client.OAuth2ClientContext
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import co.kr.n4oah.blog.social.handler.GoogleAuthenticationSuccessHandler
+import co.kr.n4oah.blog.social.filter.GoogleAuthenticationSuccessFilter
+import co.kr.n4oah.blog.social.handler.SocialAuthenticationSuccessHandler
 
 @Configuration
 @EnableConfigurationProperties
 @EnableOAuth2Client
-class OauthConfig {
+class OauthConfig() {
 	@Autowired
 	lateinit var oauth2ClientContext: OAuth2ClientContext;
 	
 	@Autowired
-	lateinit var googleSucHander: GoogleAuthenticationSuccessHandler;
+	lateinit var socialAuthenticationSuccessHandler: SocialAuthenticationSuccessHandler;
 	
 	@Bean
 	fun ssoFilter(): Filter {
 		var filter: CompositeFilter = CompositeFilter();
 		var filterList = ArrayList<Filter>();
-		var googleFilter: Filter = ssoFilter(google(), "/login/google");
+		var googleFilter: Filter = ssoFilter(google(), GoogleAuthenticationSuccessFilter());
 		filterList.add(googleFilter);
 		filter.setFilters(filterList);
 		return filter;
 	}
 	
-	private fun ssoFilter(client: ClientResource, path: String): Filter {
-        var filter: OAuth2ClientAuthenticationProcessingFilter = OAuth2ClientAuthenticationProcessingFilter(path);
+	private fun ssoFilter(client: ClientResource, filter: OAuth2ClientAuthenticationProcessingFilter): Filter {
+//        var filter: OAuth2ClientAuthenticationProcessingFilter = OAuth2ClientAuthenticationProcessingFilter(path);
         var restTemplate: OAuth2RestTemplate = OAuth2RestTemplate(client.getClient(), oauth2ClientContext);
         filter.setRestTemplate(restTemplate);
         var tokenServices: UserInfoTokenServices = UserInfoTokenServices(client.getResource().getUserInfoUri(), client.getClient().getClientId());
         tokenServices.setRestTemplate(restTemplate);
         filter.setTokenServices(tokenServices);
-		filter.setAuthenticationSuccessHandler(googleSucHander);
+		filter.setAuthenticationSuccessHandler(socialAuthenticationSuccessHandler);
         return filter;
     }
 	
@@ -57,7 +58,7 @@ class OauthConfig {
 		registration.setOrder(-100);
 		return registration;
 	}
-	
+
 	@Bean
 	@ConfigurationProperties(prefix="google")
 	fun google(): ClientResource {
