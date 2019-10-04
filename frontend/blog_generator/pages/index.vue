@@ -33,7 +33,7 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
-          <v-flex text-xs-center></v-flex>
+          <v-flex text-xs-center>메인화면</v-flex>
         </v-layout>
       </v-container>
     </v-content>
@@ -47,7 +47,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm12 md12>
-                <a @click="onLoginAuth(LoginType[LoginType.Google])">
+                <a @click="onLoginAuth(LoginType.Google)">
                   <v-img height="77" :src="require('@/assets/image/login/google-login-button.png')" />
                 </a>
               </v-flex>
@@ -67,9 +67,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import LoginType from '@/assets/ts/login-auth/loginType'
-
-console.log(LoginType[LoginType.Google])
+import { LoginType } from '@/assets/ts/account/loginInfo'
 
 @Component
 class MainPage extends Vue {
@@ -87,10 +85,12 @@ class MainPage extends Vue {
   }
 
   onLoginAuth(authType: string): void {
-    // console.log(authType)
-    // console.log(this.$axios.get('/login/google'))
-    document.cookie = 'aaaa=bbbb';
-    window.location.href='http://localhost/login/google'
+    //this.$cookies.set('LOGIN_SUCCESS_URL', '123')
+    //window.location.href='http://localhost/login/google'
+    //console.log(process.axios.baseURL)
+    console.log(process.env.apiURL)
+    console.log(authType)
+    console.log(process.env.NODE_ENV)
   }
 
   onLogout(): void {

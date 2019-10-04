@@ -1,3 +1,9 @@
+const envPath = `config/.env.${process.env.NODE_ENV}`
+
+require('dotenv').config({
+  path: envPath
+})
+
 module.exports = {
   head: {
     title: 'blog_generator',
@@ -28,12 +34,21 @@ module.exports = {
     }
   },
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt',
+    ['cookie-universal-nuxt', {
+      alias: 'cookiz'
+    }],
+    ['@nuxtjs/dotenv', {
+      filename: envPath
+    }]
   ],
-  axios: {    
-    baseURL: 'http://localhost',
+  axios: {
+    baseURL: process.env.apiURL,
     proxyHeaders: false,
     credentials: false
   },
-  buildModules: ['@nuxt/typescript-build']
+  buildModules: ['@nuxt/typescript-build'],
+  env: {
+  }
 }
