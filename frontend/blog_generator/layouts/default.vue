@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <HeaderComponent>
+    </HeaderComponent>
     <nuxt />
     <FooterComponent>
     </FooterComponent>
@@ -8,11 +10,12 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import FooterComponent from '@/components/Footer.vue'
+import * as section from '@/components/'
 
 @Component({
   components: {
-    FooterComponent
+    FooterComponent: section.FooterComponent,
+    HeaderComponent: section.HeaderComponent
   }
 })
 class DefaultLayout extends Vue {

@@ -1,9 +1,5 @@
 const envPath = `config/.env.${process.env.NODE_ENV}`
 
-require('dotenv').config({
-  path: envPath
-})
-
 module.exports = {
   head: {
     title: 'blog_generator',
