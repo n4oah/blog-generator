@@ -1,4 +1,4 @@
-package co.kr.n4oah.blog.controller.authority
+package co.kr.n4oah.blog.account.controller
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

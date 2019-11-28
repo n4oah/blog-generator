@@ -16,6 +16,7 @@ import co.kr.n4oah.blog.social.SocialType
 import java.lang.Exception
 import org.springframework.context.annotation.Configuration
 
+
 class GoogleAuthenticationSuccessFilter: OAuth2ClientAuthenticationProcessingFilter {
 	constructor(): super("/login/google")
 	

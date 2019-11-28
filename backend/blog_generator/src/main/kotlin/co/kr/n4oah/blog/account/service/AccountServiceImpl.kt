@@ -11,7 +11,7 @@ class AccountServiceImpl (
 	@Autowired val accountRepository: AccountRepository,
 	@Autowired val socialRepository: SocialAccountRepository
 	): AccountService {
-	
+
 	override fun isDuplicated(account: Account): Boolean {
 		return accountRepository.existsById(account.accountId);
 	}
@@ -21,5 +21,11 @@ class AccountServiceImpl (
 			socialRepository.save(account.social);
 		}
 		accountRepository.save(account);
+	}
+	
+	override fun signin(account: Account): Account {
+		
+		
+		TODO()
 	}
 }
