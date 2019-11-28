@@ -6,4 +6,5 @@ import co.kr.n4oah.blog.account.model.Account
 interface AccountService {
 	fun isDuplicated(account: Account): Boolean;
 	fun signup(account: Account);
+	fun signin(account: Account): Account;
 }

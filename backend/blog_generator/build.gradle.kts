@@ -40,6 +40,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation(group="org.springframework.boot", name="spring-boot-starter-data-jpa", version="2.1.7.RELEASE")
 	implementation(group="org.springframework.boot", name="spring-boot-starter-security", version="2.1.7.RELEASE")
+	implementation(group="org.springframework.boot", name="spring-boot-starter-logging", version="2.1.7.RELEASE")
+	implementation(group="org.springframework.boot", name="spring-boot-starter-log4j2", version="2.1.7.RELEASE")
 //	implementation(group="org.springframework.security.oauth", name="spring-security-oauth2", version="2.3.6.RELEASE")
 	implementation(group="org.springframework.security.oauth.boot", name="spring-security-oauth2-autoconfigure", version="2.1.7.RELEASE")
 	implementation(group="org.springframework.security", name="spring-security-oauth2-client", version="5.1.6.RELEASE")

@@ -6,13 +6,12 @@ import javax.persistence.Column
 import javax.persistence.OneToOne
 import javax.persistence.JoinColumn
 
-@Entity
+@Entity(name="account")
 data class Account(
 	@Id
 	val accountId: String,
-	@Column(name="email")
 	val email: String? = null,
-	@Column(name="name", nullable=false)
+	@Column(nullable=false)
 	val name: String,
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "provider_id", referencedColumnName = "provider_id", updatable = false, unique = true)
