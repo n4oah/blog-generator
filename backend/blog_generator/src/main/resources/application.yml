@@ -14,7 +14,7 @@ spring:
     hikari:
       maximum-pool-size: 5
       connectionTimeout: 3000
-    url: jdbc:postgresql://211.110.60.144:5432/blogdb
+    url: jdbc:postgresql://localhost:5432/blogdb
     username: blog
     password: blog123
   devtools:
