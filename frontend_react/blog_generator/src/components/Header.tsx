@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import axios from '../configs/axios'
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -29,6 +31,7 @@ export default function Header() {
 
   function showLoginModal(): void {
     setLoginModalOpen(true)
+    axios.get('')
   }
 
   function closeLoginModal(): void {
@@ -43,7 +46,7 @@ export default function Header() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            {process.env.AXIOS_BASE_URL}
+            News
           </Typography>
           <Button color="inherit" onClick={showLoginModal}>Login</Button>
           <LoginModal open={isLoginModalOpen} handleClose={closeLoginModal}></LoginModal>
