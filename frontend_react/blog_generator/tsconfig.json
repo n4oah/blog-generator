@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "module": "esnext",
     "jsx": "preserve",
     "sourceMap": true,
@@ -13,6 +13,11 @@
       "dom.iterable",
       "esnext"
     ],
+    /* log */
+    "locale": "en", // 에러메세지 출력 언어 설정
+    "pretty": true, // 에러 메시지를 예쁘게 설정
+    /* log */
+
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
@@ -23,7 +28,8 @@
     "paths": {
       "@src/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@public": ["public/*"]
+      "@public/*": ["public/*"],
+      "@api/*": ["src/apis/*"]
     },
   },
   "exclude": [
