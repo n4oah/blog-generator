@@ -14,6 +14,9 @@ module.exports = withPlugins([
       javascriptEnabled: true,
     },
     webpack(config, options) {
+      const { isServer } = options
+      const nextConfig = Object.assign({ inlineImageLimit: 8192, assetPrefix: '' }, {})
+
       /*
        * config.rsvole.alias
        */
@@ -37,6 +40,24 @@ module.exports = withPlugins([
         })
       )
       */
+
+      console.log(isServer)
+      config.module.rules.push({
+        test: /\.(jpe?g|png|svg|gif|ico|webp)$/,
+        exclude: nextConfig.exclude,
+        use: [
+          {
+            loader: require.resolve("url-loader"),
+            options: {
+              limit: nextConfig.inlineImageLimit,
+              fallback: require.resolve("file-loader"),
+              publicPath: `/_next/static/images/`,
+              outputPath: `${isServer ? "../" : ""}static/images/`,
+              name: "[name]-[hash].[ext]"
+            }
+          }
+        ]
+      })
 
       return config
     }

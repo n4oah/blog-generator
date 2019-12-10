@@ -4,6 +4,28 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import ButtonBase from '@material-ui/core/ButtonBase'
+import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
+
+import { useCookies } from 'react-cookie'
+import LoginType from '@src/enums/LoginType'
+
+//import * as googleLoginImg from '@public/image/accout/google-login-button.png'
+import googleLoginImg from '@public/image/accout/google-login-button.png'
+
+const loginBtnImg = [
+  {
+    type: LoginType.GOOGLE,
+    url: googleLoginImg,
+    width: '100%'
+  }
+]
+
+const useStyles = makeStyles((theme: Theme) => {
+  createStyles({
+
+  })
+})
 
 export interface Props {
   open: boolean
@@ -11,15 +33,41 @@ export interface Props {
 }
 
 export default function FormDialog(props: Props) {
+  const [loginSucRedCokie, setLoginSucRedCokie, removeLoginSucRedCokie] =  useCookies(['LOGIN_SUCCESS_URL'])
+
+  function goToLoginPage(type: LoginType): void {
+    setLoginSucRedCokie('LOGIN_SUCCESS_URL', '123')
+
+    switch (type) {
+      case LoginType.GOOGLE:
+        window.location.href='http://localhost/login/google'
+        break
+      case LoginType.NAVER:
+        break
+    }
+    //this.$cookies.set('LOGIN_SUCCESS_URL', '123')
+    //window.location.href='http://localhost/login/google'
+  }
+
   return (
-    <div>
+    <>
       <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">로그인</DialogTitle>
         <DialogContent>
            <DialogContentText>
             로그인 유형을 선택하세요
           </DialogContentText>
-          {/* <img src="../" /> */}
+          {loginBtnImg.map((img) => (
+            <ButtonBase
+              key={img.type}
+              style={{
+                width: img.width,
+                backgroundImage: `url(${img.url})`
+              }}
+            >
+            아아
+            </ButtonBase>
+          ))}
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleClose} color="primary">
@@ -30,6 +78,6 @@ export default function FormDialog(props: Props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   )
 }

@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    /*
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    */
     "target": "es2017",
     "module": "esnext",
     "jsx": "preserve",
@@ -38,6 +43,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.png"
   ]
 }
