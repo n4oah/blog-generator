@@ -10,14 +10,14 @@ import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { useCookies } from 'react-cookie'
 import LoginType from '@src/enums/LoginType'
 
-//import * as googleLoginImg from '@public/image/accout/google-login-button.png'
 import googleLoginImg from '@public/image/accout/google-login-button.png'
 
 const loginBtnImg = [
   {
     type: LoginType.GOOGLE,
     url: googleLoginImg,
-    width: '100%'
+    width: '100%',
+    height: 97
   }
 ]
 
@@ -36,6 +36,7 @@ export default function FormDialog(props: Props) {
   const [loginSucRedCokie, setLoginSucRedCokie, removeLoginSucRedCokie] =  useCookies(['LOGIN_SUCCESS_URL'])
 
   function goToLoginPage(type: LoginType): void {
+    
     setLoginSucRedCokie('LOGIN_SUCCESS_URL', '123')
 
     switch (type) {
@@ -45,13 +46,19 @@ export default function FormDialog(props: Props) {
       case LoginType.NAVER:
         break
     }
+    
     //this.$cookies.set('LOGIN_SUCCESS_URL', '123')
     //window.location.href='http://localhost/login/google'
   }
 
   return (
     <>
-      <Dialog open={props.open} onClose={props.handleClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        open={props.open}
+        onClose={props.handleClose}
+        aria-labelledby="form-dialog-title"
+        fullWidth={true}
+        maxWidth="sm">
         <DialogTitle id="form-dialog-title">로그인</DialogTitle>
         <DialogContent>
            <DialogContentText>
@@ -62,10 +69,11 @@ export default function FormDialog(props: Props) {
               key={img.type}
               style={{
                 width: img.width,
-                backgroundImage: `url(${img.url})`
+                backgroundImage: `url(${img.url})`,
+                height: img.height
               }}
+              onClick={() => goToLoginPage(img.type)}
             >
-            아아
             </ButtonBase>
           ))}
         </DialogContent>

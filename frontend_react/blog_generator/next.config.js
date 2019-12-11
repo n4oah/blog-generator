@@ -28,20 +28,9 @@ module.exports = withPlugins([
       config.resolve.alias['@api'] = path.join(__dirname, 'src/apis')
 
       /*
-       * config.plugins
+       * config.module.rules
+       * file-loader 플러그인 추가
        */
-      /*
-      config.plugins = config.plugins || []
-
-      config.plugins.push(
-        new Dotenv({
-          path: path.join(__dirname, '.env'),
-          systemvars: true
-        })
-      )
-      */
-
-      console.log(isServer)
       config.module.rules.push({
         test: /\.(jpe?g|png|svg|gif|ico|webp)$/,
         exclude: nextConfig.exclude,
