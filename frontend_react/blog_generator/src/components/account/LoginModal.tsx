@@ -33,11 +33,11 @@ export interface Props {
 }
 
 export default function FormDialog(props: Props) {
-  const [loginSucRedCokie, setLoginSucRedCokie, removeLoginSucRedCokie] =  useCookies(['LOGIN_SUCCESS_URL'])
+  const [, setLoginSucRedCokie] =  useCookies(['LOGIN_SUCCESS_URL'])
 
   function goToLoginPage(type: LoginType): void {
     
-    setLoginSucRedCokie('LOGIN_SUCCESS_URL', '123')
+    setLoginSucRedCokie('LOGIN_SUCCESS_URL', 'http://localhost:3000/')
 
     switch (type) {
       case LoginType.GOOGLE:
@@ -46,9 +46,6 @@ export default function FormDialog(props: Props) {
       case LoginType.NAVER:
         break
     }
-    
-    //this.$cookies.set('LOGIN_SUCCESS_URL', '123')
-    //window.location.href='http://localhost/login/google'
   }
 
   return (

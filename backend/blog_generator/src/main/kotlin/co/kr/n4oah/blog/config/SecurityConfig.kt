@@ -17,11 +17,11 @@ public class SecurityConfig(@Autowired private val ssoFilter: Filter) : WebSecur
 	override fun configure(http: HttpSecurity) {
 		http.antMatcher("/**")
 			.authorizeRequests()
-			.antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-			.antMatchers("/login/**").permitAll()//.hasAuthority(SocialType.GOOGLE.getRoleType())
+			.antMatchers("/login/**").permitAll()// 인증 권한이 필요없다
 //			.antMatchers("/login/**").hasAnyRole("ADMIN", "USER")
-			.anyRequest()
-			.authenticated()
+			.antMatchers("/admin/**").hasAnyRole("ADMIN")
+			.anyRequest() // 그 외 요청은
+				.authenticated() // 인증권한이 필요함
 			.and()
 			.exceptionHandling()
 			.and()

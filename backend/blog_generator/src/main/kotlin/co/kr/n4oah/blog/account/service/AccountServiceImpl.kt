@@ -17,9 +17,11 @@ class AccountServiceImpl (
 	}
 	
 	override fun signup(account: Account) {
+		/*
 		if (account.social != null) {
 			socialRepository.save(account.social);
 		}
+		*/
 		accountRepository.save(account);
 	}
 	
