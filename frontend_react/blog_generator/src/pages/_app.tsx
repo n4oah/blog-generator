@@ -3,7 +3,6 @@ import Head from 'next/head'
 import React from 'react'
 
 import HeaderComponent from '../components/Header'
-// import LoginModal from '../modals/LoginModal'
 
 export default class RootApp extends App {
   render() {
