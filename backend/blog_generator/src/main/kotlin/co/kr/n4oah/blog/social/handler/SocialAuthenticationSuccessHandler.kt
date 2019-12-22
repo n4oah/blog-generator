@@ -30,7 +30,7 @@ public class SocialAuthenticationSuccessHandler: SimpleUrlAuthenticationSuccessH
 	override fun onAuthenticationSuccess(request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication) {
 		val cookieUtils: CookieUtils = CookieUtils(request.getCookies());
 		val redirectUrl: String = cookieUtils.getCookieValue(AccountRedirectType.LOGIN_SUCCESS_URL.value)!!;
-		
+
 		val account: Account = request.getAttribute("AuthenticationAccount")!! as Account;
 		
 		if (accountService.isDuplicated(account) == true) {
@@ -43,15 +43,16 @@ public class SocialAuthenticationSuccessHandler: SimpleUrlAuthenticationSuccessH
 		params.add("access_token", account.social?.accountToken);
 
 		super.clearAuthenticationAttributes(request);
-		super.getRedirectStrategy().sendRedirect(request, response, determineTargetUrl(request, response, params));
+		super.getRedirectStrategy().sendRedirect(request, response, determineTargetUrl(request, response, redirectUrl, params));
 	}
 
-	protected fun determineTargetUrl(request: HttpServletRequest, response: HttpServletResponse, params: MultiValueMap<String, String>): String {
-		val cookieUtils: CookieUtils = CookieUtils(request.getCookies());
-		val redirectUrl: String = cookieUtils.getCookieValue(AccountRedirectType.LOGIN_SUCCESS_URL.value)!!;
-
-		return UriComponentsBuilder.fromUriString(redirectUrl)
+	protected fun determineTargetUrl(
+			request: HttpServletRequest,
+			response: HttpServletResponse,
+			httpUrl: String,
+			params: MultiValueMap<String, String>
+	): String {
+		return UriComponentsBuilder.fromHttpUrl(httpUrl)
 				.queryParams(params).build().toUriString();
 	}
-
 }

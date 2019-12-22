@@ -13,12 +13,6 @@ group = "co.kr.n4oah.blog"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-/*
-apply {
-	plugin("kotlin-jpa")
-}
-*/
-
 val developmentOnly by configurations.creating
 configurations {
 	runtimeClasspath {
@@ -51,7 +45,6 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	
 	runtime(group="org.springframework.boot", name="spring-boot-devtools", version="2.1.7.RELEASE")
-//	compile("org.springframework.boot:spring-boot-devtools")
 	
 	annotationProcessor("org.projectlombok:lombok")
 	
